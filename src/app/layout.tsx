@@ -10,6 +10,12 @@ const interSans = Inter_Tight({
 export const metadata: Metadata = {
   title: "Коплю на квартиру",
   description: "Очень коплю...",
+  openGraph: {
+    type: 'website',
+    images: {
+      url: 'https://h.zmln.ru/og.png',
+    }
+  },
 };
 
 export default function RootLayout({
