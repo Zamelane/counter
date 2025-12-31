@@ -1,0 +1,38 @@
+name: Deploy to @pages branch
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 'latest'
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build with Next.js
+        run: bun run build
+
+      - name: Create CNAME and .nojekyll files
+        run: |
+          echo "h.zmln.ru" > ./out/CNAME
+          touch ./out/.nojekyll
+
+      - name: Deploy to @pages branch 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: '@pages'
+          clean: true
