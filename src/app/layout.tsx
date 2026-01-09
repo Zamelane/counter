@@ -16,6 +16,10 @@ export const metadata: Metadata = {
       url: 'https://h.zmln.ru/og.png',
     }
   },
+  robots: {
+    index: false,
+    follow: false,
+  }
 };
 
 export default function RootLayout({
