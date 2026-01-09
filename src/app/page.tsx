@@ -103,6 +103,9 @@ export default function Home() {
         </div>
 
         <p className="pt-5">Рост по месяцам:</p>
+        <p className="pt-0 text-sm text-[#6F6F6F]">
+          <i>*без учёта иного дохода</i>
+        </p>
         {calc.monthes.map((month, i) => {
           let currShow = showes[i];
           if (currShow == undefined) {
