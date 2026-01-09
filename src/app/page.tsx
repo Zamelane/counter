@@ -133,14 +133,18 @@ export default function Home() {
               </p>
               <p>
                 Будет накоплено: {moneyFormat(month.total)} (+
-                {moneyFormat(month.depositPercentMoney + money.monthMoneyAdd)})
+                {moneyFormat(
+                  month.depositPercentMoney + (i > 0 ? money.monthMoneyAdd : 0)
+                )}
+                )
               </p>
               <p>
                 Из них вклад: {moneyFormat(month.deposit)} (+
                 {moneyFormat(month.depositPercentMoney)})
               </p>
               <p>
-                Из них месячное пополнение: {moneyFormat(money.monthMoneyAdd)}
+                Из них месячное пополнение:{" "}
+                {moneyFormat(i > 0 ? money.monthMoneyAdd : 0)}
               </p>
             </div>
           ) : (
@@ -162,7 +166,10 @@ export default function Home() {
               </p>
               <p>
                 {moneyFormat(month.total)} (+
-                {moneyFormat(month.depositPercentMoney + money.monthMoneyAdd)})
+                {moneyFormat(
+                  month.depositPercentMoney + (i > 0 ? money.monthMoneyAdd : 0)
+                )}
+                )
               </p>
             </div>
           );
@@ -204,6 +211,15 @@ function calculateDays(
 
   while (total > current + depositPercentMoney) {
     monthesTotal++;
+
+    if (monthesTotal == 1) {
+      monthes.push({
+        current: monthesTotal == 1,
+        total: current,
+        deposit: deposit,
+        depositPercentMoney: 0,
+      });
+    }
 
     deposit += monthesTotal > 1 ? monthMoneyAdd : 0;
     depositPercentMoney = deposit + depositPercentMoney;
