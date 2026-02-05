@@ -10,13 +10,13 @@ type HistoryShow = {
 export default function Home() {
   const [money, setMoney] = useState({
     total: 2_500_000,
-    current: 243_310.96,
-    monthMoneyAdd: 50_000,
+    current: 236_824.04,
+    monthMoneyAdd: 40_000,
   });
 
   const [deposit, setDeposit] = useState({
-    money: 235_310.96,
-    percent: 16.5,
+    money: 236_611.73,
+    percent: 14,
   });
 
   const [showes, setShowes] = useState<HistoryShow[]>([]);
